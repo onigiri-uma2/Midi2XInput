@@ -30,13 +30,12 @@ Velocity に応じて本体の Neopixel を発光させます。
 | **給電用 5 V 電源** | AtomS3 & ハブ用 | 合計 1 A 以上推奨 |
 
 > **注意**  
-> ATOMS3／ATOMS3 Lite には USB-C 端子が一つしかありません。   
-> デフォルトでは USB-C 端子から電源入力しているため、USB-C 端子に MIDI キーボードを接続すると本体に電源供給できなくなります。   
-> ATOMS3 で USB Host 機能を使うには Grove 端子、または 5V ピンから本体に電源供給してください。   
-> また、USB Host 機能は、基板側で USB-C 端子の VBUS（5V電源ライン）を出力しない設計になっています。   
-> つまり、キーボードなどのバスパワーの USB 機器を接続しても、USB 側に電力が供給されないため動作しません。   
-> バスパワーの USB 機器を使用する場合は外部から 5V 電源を供給してください。（自己電源（セルフパワー）式の USB ハブを利用する方法を推奨します）   
-> 自己電源（セルフパワー）式の USB ハブを利用する方法を推奨しますが、接続する USB 機器の消費電力が非常に少ない場合には、外部電源の供給をしなくても USB 経由の微弱な漏れ電流で動作することがあるようです。
+> ATOMS3／ATOMS3 Lite は USB-C 端子を1つだけ備えており、通常はここから電源を供給します。   
+> そのため、USB-C に MIDI キーボードなどを接続すると、本体に電源を供給できなくなります。   
+> USB Host 機能を使用する場合は、Grove端子や5Vピンから本体に電源を供給してください。   
+> また、ATOMS3 の基板設計上、USB-C 端子からは VBUS（5V）が出力されないため、バスパワーの USB 機器には電力が供給されません。   
+> そのため、セルフパワー式 USB ハブなどを用いて外部から電源を供給する必要があります。
+> ただし、接続する機器の消費電力が極めて小さい場合は、USB 経由の微弱な漏れ電流で動作することもあります。
 ---
 
 ## ソフトウェア要件
@@ -53,7 +52,7 @@ Velocity に応じて本体の Neopixel を発光させます。
   | [Callback](https://github.com/tomstewart89/Callback) | 1.1 | MIT |
   | [ESP32_Host_MIDI](https://github.com/sauloverissimo/ESP32_Host_MIDI) | 1.0.3 | MIT |
 
-・ESP32-BLE-CompositeHID はリポジトリからZIPをダウンロードして   
+・ESP32-BLE-CompositeHID はリポジトリから ZIP をダウンロードして   
   Arduino IDE の「Sketch> Include Library> Add .ZIP Library」でライブラリにインストールしてください。   
 ・ESP32_Host_MIDI は`USB_Conexion`のみ使用しているのでスケッチフォルダに同梱しています。   
   ※ライブラリ全体をインストールするとBLE 関連（NimBLE）が二重定義となりビルドできなくなります。   
@@ -70,8 +69,8 @@ Velocity に応じて本体の Neopixel を発光させます。
    https://static-cdn.m5stack.com/resource/arduino/package_m5stack_index.json
 5. 「tools> Board> M5Stack> M5AtomS3」を選択  
 6. ポートを選択（PC 環境によりポート番号は変わります）
-7. 「USB CDC On Boot: **"Disabled"**」
-8. 「USB Mode: **"USB-OTG (TinyUSB)"**」
+7. 「USB CDC On Boot: **"Disabled"**」を選択
+8. 「USB Mode: **"USB-OTG (TinyUSB)"**」を選択
 9. **書き込み**  
 
 > **注意**  
